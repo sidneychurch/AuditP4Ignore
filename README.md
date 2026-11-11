@@ -1,5 +1,7 @@
 # Audit-P4Ignore.ps1
 
+<img src="Images/audit_none.png" alt="Audit No Conflicts" width="600">
+
 A PowerShell utility that audits files tracked in a Perforce depot against the workspace's current `.p4ignore` rules. Identifies conflicting files and optionally removes them from version control while preserving local copies.
 
 ## Features
@@ -30,6 +32,8 @@ A PowerShell utility that audits files tracked in a Perforce depot against the w
 The script guides you through workspace selection, audits tracked files, and generates a CSV report.
 
 If conflicts are found, review the report and type `DELETE` when prompted to continue cleanup. Press Enter to exit without making changes.
+
+<img src="Images/audit_conflict.png" alt="Audit Conflicts" width="600">
 
 ### Additional Commands
 
