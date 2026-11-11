@@ -84,6 +84,18 @@ $AuditColumns = @(
 $PathComparer = [StringComparer]::OrdinalIgnoreCase
 
 ###############################################################################
+# PERFORCE OUTPUT ENCODING
+###############################################################################
+
+# Windows ANSI (1252) handles Western European characters,
+# including accented filenames such as BézierCurve.
+
+$script:P4OutputEncoding = [System.Text.Encoding]::GetEncoding(1252)
+
+# Ensure PowerShell interprets native command output consistently.
+[Console]::OutputEncoding = $script:P4OutputEncoding
+
+###############################################################################
 # 2. GENERAL UTILITIES
 ###############################################################################
 
@@ -436,7 +448,11 @@ $errorText
         Write-Host "Metadata query completed."
         Write-Host "Processing returned records..."
 
-        $reader = [IO.StreamReader]::new($stdoutFile)
+        $reader = [IO.StreamReader]::new(
+			$stdoutFile,
+			$script:P4OutputEncoding,
+			$true
+		)
 
         try {
 
