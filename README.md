@@ -64,5 +64,6 @@ If a CSV is open or locked, the script generates a timestamped alternative inste
 - Nested ignore files may extend or override workspace-level rules; review them before consolidating.
 - If no conflicts are found, the script reports **AUDIT COMPLETE - NO CHANGES NEEDED**.
 - Non-ASCII filenames may produce encoding warnings. The script attempts to handle these safely and stops cleanup if ignore evaluation cannot be completed.
+  - Character encoding: On Windows, the script uses Windows-1252 to handle accented filenames when communicating with non-Unicode Perforce servers. Other server or client configurations may require a different encoding.
 
 **After cleanup:** Review and submit the pending changelist in P4V, then rerun the audit to verify that no conflicts remain.
